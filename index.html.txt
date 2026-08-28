@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dilophosaurus Security Control Center</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #121212;
+            color: #E0E0E0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .control-panel {
+            background-color: #1E1E1E;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+            text-align: center;
+            border: 2px solid #333;
+            max-width: 400px;
+            width: 100%;
+        }
+        h1 {
+            color: #FF5252;
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+        .status-box {
+            background-color: #2D2D2D;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 20px 0;
+            font-size: 18px;
+            font-weight: bold;
+        }
+        .danger {
+            color: #FF5252;
+            border: 1px solid #FF5252;
+        }
+        .secure {
+            color: #4CAF50;
+            border: 1px solid #4CAF50;
+        }
+        button {
+            background-color: #FF5252;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background-color 0.2s, transform 0.1s;
+        }
+        button:hover {
+            background-color: #FF7373;
+        }
+        button:active {
+            transform: scale(0.98);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="control-panel">
+        <h1>🦖 Enclosure Security</h1>
+        <p>Dilophosaurus Fence Security Monitor</p>
+
+        <!-- 1. The visual display (representing State) -->
+        <div id="status" class="status-box danger">
+            STATUS: DANGER (0V) - Fence Offline!
+        </div>
+
+        <!-- 2. The Button (Triggering our event) -->
+        <button id="securityButton" onclick="toggleSecurity()">Activate Fence (130V)</button>
+    </div>
+
+    <script>
+        // 3. The State: Starts as 'false' (offline / dangerous)
+        let isSecure = false;
+
+        // 4. The Event Handler: Runs automatically when the button is clicked!
+        function toggleSecurity() {
+            // Flip the state to its opposite! (True becomes False, False becomes True)
+            isSecure = !isSecure;
+
+            // Find the visual elements on our webpage
+            const statusDiv = document.getElementById("status");
+            const button = document.getElementById("securityButton");
+
+            // 5. The Condition: Check our state and update the screen!
+            if (isSecure) {
+                statusDiv.innerText = "STATUS: SECURE (130V) - Fence Active!";
+                statusDiv.className = "status-box secure";
+                button.innerText = "Deactivate Fence";
+                button.style.backgroundColor = "#4CAF50";
+            } else {
+                statusDiv.innerText = "STATUS: DANGER (0V) - Fence Offline!";
+                statusDiv.className = "status-box danger";
+                button.innerText = "Activate Fence (130V)";
+                button.style.backgroundColor = "#FF5252";
+            }
+        }
+    </script>
+
+</body>
+</html>
